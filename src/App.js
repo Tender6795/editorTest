@@ -1,10 +1,16 @@
-import './App.css';
-import { RichTextEditor } from './RichTextEditor/RichEditor'
+// import { useState } from 'react'
+import './App.css'
+
+import { CustomModal } from './components/CustomModal/CustomModal'
+// import { RichTextEditor } from './components/RichTextEditor/RichEditor'
 
 function App() {
+
   return (
     <>
-      <RichTextEditor />
+      {' '}
+      {/* <RichTextEditor /> */}
+      <CustomModal/>
     </>
   )
 }

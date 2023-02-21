@@ -1,18 +1,15 @@
 import React from 'react'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
-
-export const RichTextEditor = () => {
+export const RichTextEditor = ({ changeData, data }) => {
   return (
     <>
-      <h2>Using CKEditor 5 build in React</h2>
       <CKEditor
+        data={data}
         editor={ClassicEditor}
         onChange={(event, editor) => {
-          const data = editor.getData()
-          // console.log({ event, editor, data })
-          console.log("data====", data)
+          changeData(editor.getData())
         }}
         // onBlur={(event, editor) => {
         //   console.log('Blur.', editor)
