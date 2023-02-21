@@ -33,7 +33,7 @@ export const CustomModal = () => {
             aria-label="Disabled elevation buttons"
           >
             <Button>Save</Button>
-            <Button>Cancel</Button>
+            <Button onClick={handleClose}>Cancel</Button>
           </ButtonGroup>
         </Box>
       </Modal>
