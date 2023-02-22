@@ -3,6 +3,8 @@ const cors = require('cors')
 require('dotenv').config()
 const sequelize = require('./db')
 const models = require('./src/models/models')
+const router = require('./src/routes')
+const errorMidleware = require('./src/midleware/ErrorHandling.middleware')
 
 const PORT = process.env.PORT || 5000
 
@@ -17,7 +19,8 @@ app.use(
     optionsSuccessStatus: 200,
   })
 )
-
+app.use('/api', router)
+app.use(errorMidleware)
 
 const start = async () => {
   try {

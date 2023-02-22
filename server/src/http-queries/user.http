@@ -1,5 +1,13 @@
-//Create
-POST http://localhost:8080/api/user HTTP/1.1
+POST http://localhost:5000/api/user/registration HTTP/1.1
+content-type: application/json
+
+{
+    "email": "tender67951Admin2121212@gmail.com",
+    "password": "12345"
+}
+
+###
+POST http://localhost:5000/api/user/login HTTP/1.1
 content-type: application/json
 
 {
@@ -9,34 +17,8 @@ content-type: application/json
 
 ###
 
-//Get all
-GET http://localhost:8080/api/user HTTP/1.1
+GET http://localhost:5000/api/user/auth?id=5 HTTP/1.1
 
 ###
 
-//Get by id
-GET http://localhost:8080/api/user/32 HTTP/1.1
-
-###
-
-//Get by email
-GET http://localhost:8080/api/user/email/tender679511@gmail.com HTTP/1.1
-
-###
-
-//Delete by id
-DELETE  http://localhost:8080/api/user/2 HTTP/1.1
-
-###
-
-//Update by id
-PATCH   http://localhost:8080/api/user/2 HTTP/1.1
-content-type: application/json
-
-{
-    "firstName": "firstName",
-    "lastName": "lastName",
-    "patronymic":"patronymic"
-}
-###
 
