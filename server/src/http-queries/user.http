@@ -1,8 +1,9 @@
+
 POST http://localhost:5000/api/user/registration HTTP/1.1
 content-type: application/json
 
 {
-    "email": "tender67951Admin2121212@gmail.com",
+    "email": "ten11212wqwn21212112@gmail.com",
     "password": "12345"
 }
 
@@ -11,13 +12,14 @@ POST http://localhost:5000/api/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "tender67951Admin2121212@gmail.com",
+    "email": "ten11212wqwn21212112@gmail.com",
     "password": "12345"
 }
 
 ###
 
 GET http://localhost:5000/api/user/auth?id=5 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJ0ZW4xMTIxMndxd24yMTIxMjExMkBnbWFpbC5jb20iLCJpYXQiOjE2NzcwOTM4MTUsImV4cCI6MTY3NzE4MDIxNX0.5y4sDX47fHveVkBtWzYdRDDDvmiqJ3hOGhMwbOmNfTQ
 
 ###
 
