@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 const sequelize = require('./db')
+const models = require('./src/models/models')
 
 const PORT = process.env.PORT || 5000
 
