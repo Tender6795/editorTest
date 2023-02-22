@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Box, Modal, Button, ButtonGroup, TextField } from '@mui/material'
 import { style } from './style'
 import { validateEmail, validatePassword } from '../../helpers'
+import { TYPE_OF_MODAL } from './constans'
 
 export const AuthModal = () => {
   const [open, setOpen] = useState(false)
@@ -43,15 +44,17 @@ export const AuthModal = () => {
   }
 
   const submitHandle = type => {
-    if(!validator()) return
+    if (!validator()) return
   }
 
   //TODO constans
-  const loginHandle = () => submitHandle('login')
-  const registrationHandle = () => submitHandle('registration')
+  const loginHandle = () => submitHandle(TYPE_OF_MODAL.LOGIN)
+  const registrationHandle = () => submitHandle(TYPE_OF_MODAL.REGISTRATION)
 
   const { email, password } = formData
   const { emailErr, passwordErr } = error
+  console.log({ emailErr })
+  console.log({ passwordErr })
   return (
     <>
       <Button onClick={handleOpen}>Auth</Button>
@@ -77,8 +80,8 @@ export const AuthModal = () => {
               fullWidth
               value={email}
               name="email"
-              error={!emailErr}
-              helperText={!emailErr ? 'Not valid email' : ''}
+              error={emailErr}
+              helperText={emailErr ? 'Not valid email' : ''}
               onChange={handleChange}
             />
             <TextField
@@ -89,8 +92,8 @@ export const AuthModal = () => {
               fullWidth
               name="password"
               value={password}
-              error={!passwordErr}
-              helperText={!passwordErr ? 'Too short password' : ''}
+              error={passwordErr}
+              helperText={passwordErr ? 'Too short password' : ''}
               onChange={handleChange}
             />
           </Box>
