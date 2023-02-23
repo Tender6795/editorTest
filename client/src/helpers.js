@@ -5,5 +5,5 @@ export function validateEmail(email) {
 }
 
 export function validatePassword(password) {
-  return password.lenght > 3
+  return password.length > 3
 }
