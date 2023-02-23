@@ -1,10 +1,24 @@
-import { useState } from 'react'
-import { Box, Modal, Button, ButtonGroup, TextField } from '@mui/material'
-import { style } from './style'
-import { validateEmail, validatePassword } from '../../helpers'
-import { TYPE_OF_MODAL } from './constans'
+import { useContext, useState } from 'react'
+import {
+  Box,
+  Modal,
+  Button,
+  ButtonGroup,
+  TextField,
+  Alert,
+} from '@mui/material'
+import jwtDecode from 'jwt-decode'
+import { observer } from 'mobx-react-lite'
 
-export const AuthModal = () => {
+import { style } from './style'
+import { setTokenToLocalStore, validateEmail, validatePassword } from '../../helpers'
+import { TYPE_OF_MODAL } from './constans'
+import { login, registration } from '../../api'
+import { Context } from '../..'
+
+export const AuthModal = observer(() => {
+  const { user } = useContext(Context)
+
   const [open, setOpen] = useState(false)
   const initialFormData = {
     email: '',
@@ -14,6 +28,7 @@ export const AuthModal = () => {
   const initialErrors = {
     emailErr: false,
     passwordErr: false,
+    authErr: '',
   }
 
   const [formData, setFormData] = useState(initialFormData)
@@ -43,21 +58,35 @@ export const AuthModal = () => {
     return false
   }
 
-  const submitHandle = type => {
+  const submitHandle = async type => {
     if (!validator()) return
+    let res
+    try {
+      if (type === TYPE_OF_MODAL.LOGIN) {
+        res = await login({ email, password })
+      } else {
+        res = await registration({ email, password })
+      }
+      user.setUser(jwtDecode(res.token))
+      user.setIsAuth(true)
+      setTokenToLocalStore(res.token)
+      handleClose()
+    } catch (e) {
+      setError({ ...error, authErr: e.message })
+    }
   }
 
-  //TODO constans
   const loginHandle = () => submitHandle(TYPE_OF_MODAL.LOGIN)
   const registrationHandle = () => submitHandle(TYPE_OF_MODAL.REGISTRATION)
 
   const { email, password } = formData
-  const { emailErr, passwordErr } = error
-  console.log({ emailErr })
-  console.log({ passwordErr })
+  const { emailErr, passwordErr, authErr } = error
   return (
     <>
-      <Button onClick={handleOpen}>Auth</Button>
+      <Button onClick={handleOpen} color="inherit">
+        Auth
+      </Button>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -74,7 +103,6 @@ export const AuthModal = () => {
             autoComplete="off"
           >
             <TextField
-              id="outlined-basic"
               label="Email"
               variant="outlined"
               fullWidth
@@ -85,7 +113,6 @@ export const AuthModal = () => {
               onChange={handleChange}
             />
             <TextField
-              id="outlined-basic"
               label="Password"
               variant="outlined"
               type="password"
@@ -96,6 +123,11 @@ export const AuthModal = () => {
               helperText={passwordErr ? 'Too short password' : ''}
               onChange={handleChange}
             />
+            {authErr && (
+              <Alert severity="error" color="error">
+                {authErr}
+              </Alert>
+            )}
           </Box>
           <ButtonGroup
             disableElevation
@@ -109,4 +141,4 @@ export const AuthModal = () => {
       </Modal>
     </>
   )
-}
+})

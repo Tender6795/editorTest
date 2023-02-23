@@ -7,3 +7,15 @@ export function validateEmail(email) {
 export function validatePassword(password) {
   return password.length > 3
 }
+
+export function deleteTokenFromLocalStore() {
+  localStorage.removeItem('token')
+}
+
+export function setTokenToLocalStore(token) {
+  localStorage.setItem('token', token)
+}
+
+export function isLocalStoreHasToken() {
+  return !!localStorage.getItem('token')
+}
