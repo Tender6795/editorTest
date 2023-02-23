@@ -1,13 +1,17 @@
 
 POST http://localhost:5000/api/page HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJ0ZW4xMTIxMndxd24yMTIxMjExMkBnbWFpbC5jb20iLCJpYXQiOjE2NzcxMzkyNDgsImV4cCI6MTY3NzIyNTY0OH0.KdA4uD75Ooq5FBPZHWjztXgtf2xU2YI_cobJpYUY3yc
+
 
 {
-    "text": "12dsdasdadasdasvcv"
+    "text": "qwqwqwqwq"
 }
 
 ###
 
 GET http://localhost:5000/api/page HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJ0ZW4xMTIxMndxd24yMTIxMjExMkBnbWFpbC5jb20iLCJpYXQiOjE2NzcxMzkyNDgsImV4cCI6MTY3NzIyNTY0OH0.KdA4uD75Ooq5FBPZHWjztXgtf2xU2YI_cobJpYUY3yc
+
 
 ###
