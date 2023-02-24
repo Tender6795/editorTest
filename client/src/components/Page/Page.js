@@ -12,6 +12,7 @@ export const Page = ({ content }) => {
           margin: '10px 0',
           width: '30vw',
           height: '30vh',
+          padding:'10px'
         }}
       >
         <div dangerouslySetInnerHTML={{ __html: content }} />
