@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Box, Modal, Button, ButtonGroup } from '@mui/material'
 import { RichTextEditor } from '../RichTextEditor/RichEditor'
 import { style } from './style'
+import { createPage } from '../../api'
+import { Context } from '../..'
 
 export const CustomModal = () => {
   const [open, setOpen] = useState(false)
   const [data, setData] = useState('')
+  const { pages } = useContext(Context)
+
 
   const handleOpen = () => {
     setOpen(true)
@@ -16,9 +20,18 @@ export const CustomModal = () => {
   const changeData = data => {
     setData(data)
   }
+
+  const saveHandle = async () => {
+   const res =  await createPage({text: data})
+    pages.addPage(res)
+    handleClose()
+  }
+
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen} variant="contained">
+        Add page
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -32,7 +45,7 @@ export const CustomModal = () => {
             variant="contained"
             aria-label="Disabled elevation buttons"
           >
-            <Button>Save</Button>
+            <Button onClick={saveHandle}>Save</Button>
             <Button onClick={handleClose}>Cancel</Button>
           </ButtonGroup>
         </Box>

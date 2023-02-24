@@ -10,7 +10,11 @@ export default class PagesStore {
     this._pages = pages
   }
 
+  addPage(page) {
+    this._pages.push(page) 
+  }
+
   get pages() {
-    return this.pages
+    return this._pages
   }
 }
